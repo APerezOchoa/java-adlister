@@ -11,6 +11,7 @@
     <title>Profile</title>
 </head>
 <body>
-
+    <h1>Welcome to AdLister, ${username}!</h1>
+    <h3>You have successfully logged in</h3>
 </body>
 </html>
