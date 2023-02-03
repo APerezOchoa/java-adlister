@@ -2,14 +2,16 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title><%= "some title" %></title>
+    <title>Welcome to Adlister</title>
 </head>
 <body>
-    <c:if test="true">
-        <h1>Variable names should be very descriptive</h1>
-    </c:if>
-    <c:if test="false">
-        <h1>single letter variable names are good</h1>
-    </c:if>
+    <%@ include file="partials/navbar.jsp" %>
+
+    <h1>Welcome to Adlister</h1>
+    <hr />
+    <%! int counter = 0; %>
+    <% counter += 1; %>
+    <%= counter %>
+    <%-- Comments --%>
 </body>
 </html>
