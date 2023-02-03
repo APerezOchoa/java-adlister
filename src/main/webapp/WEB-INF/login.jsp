@@ -11,16 +11,8 @@
     <title>Login</title>
 </head>
 <body>
-
-<%-- JSP Solution --%>
-    <%
-        if(request.getMethod().equalsIgnoreCase("post") && Objects.equals(request.getParameter("username"), "admin") && Objects.equals(request.getParameter("password"), "password")){
-            String redirectUrl = "/profile.jsp";
-            response.sendRedirect(redirectUrl);
-        }
-    %>
-
-    <form action="login.jsp" method="post">
+<%--  NOTICE: in the form, the action of login is NOT login.jsp. It is directing the info to the login servlet where the logic will be handled. The .jsp files are to be used for intake of information, then it is to be sent off to the servlets for logic/course of action based on input --%>
+    <form action="login" method="post">
         <label for="username">Username:</label>
         <input type="text" placeholder="Username" name="username" id="username" required />
         <label for="password">Password:</label>
