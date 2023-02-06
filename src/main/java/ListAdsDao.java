@@ -2,17 +2,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ListAdsDao implements Ads {
+
     private List<Ad> ads;
 
     public List<Ad> all() {
+
         if (ads == null) {
             ads = generateAds();
         }
         return ads;
+
     }
 
     private List<Ad> generateAds() {
+
         List<Ad> ads = new ArrayList<>();
+
         ads.add(new Ad(
             1,
             1,
@@ -37,6 +42,8 @@ public class ListAdsDao implements Ads {
             "JavaScript Developer needed",
             "Must have strong Java skills"
         ));
+
         return ads;
     }
+
 }

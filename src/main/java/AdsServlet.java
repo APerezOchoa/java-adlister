@@ -5,13 +5,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(name = "ViewProfileServlet", urlPatterns = "/profile")
+@WebServlet(name = "AdsServlet", urlPatterns = "/ads")
 
-public class ViewProfileServlet extends HttpServlet {
+public class AdsServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        request.getRequestDispatcher("/profile.jsp").forward(request, response);
+        //**********NEED TO FIX THIS GETADSDAO STILL******************
+        request.setAttribute("listAds", DaoFactory.getAdsDao());
+
+        request.getRequestDispatcher("ads/index.jsp").forward(request, response);
 
     }
 
