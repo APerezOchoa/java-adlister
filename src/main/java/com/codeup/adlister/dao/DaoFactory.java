@@ -10,4 +10,8 @@ public class DaoFactory {
         }
         return adsDao;
     }
+
+//    public MySQLUsersDao(Ads adsDao){
+//        return;
+//    }
 }
