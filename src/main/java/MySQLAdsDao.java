@@ -1,14 +1,16 @@
 import com.mysql.cj.jdbc.Driver;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class MySQLAdsDao implements Ads{
+
     private Connection connection = null;
 
-    public MySQLAdsDao (Config config) {
+    public List<Ads> MySQLAdsDao (Config config) {
+
+        String selectQuery = "SELECT * FROM ads";
 
         try{
             DriverManager.registerDriver(new Driver());
@@ -20,16 +22,39 @@ public class MySQLAdsDao implements Ads{
         } catch (SQLException e){
             throw new RuntimeException("Error connecting to database!", e);
         }
-
     }
 
-    //IntelliJ Auto Generated overides
+    //Unfinished
     @Override
-    public List<Ad> all() {
-        return null;
+    public List<Ads> all() {
+        Statement stmt = null;
+        try{
+            stmt = connection.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT * FROM ads");
+            return createAdsFromResults(rs);
+        } catch (SQLException e){
+            throw new RuntimeException("Error retrieving all ads!", e);
+        }
     }
     @Override
+    //not my work
     public Long insert(Ad ad) {
-        return null;
+        try{
+            Statement stmt = connection.createStatement();
+            stmt.executeUpdate(createInsertQuery(ad), Statement.RETURN_GENERATED_KEYS);
+            ResultSet rs = stmt.getGeneratedKeys();
+            rs.next();
+            return .rs.getLong(1);
+        } catch (SQLException e) {
+            throw new RuntimeException("Error creating a new ad!", e);
+        }
     }
+    private String createInsertQuery(Ad ad){
+
+    }
+    private Ad extractAd(ResultSet rs) throws SQLException{
+
+    }
+    /////ONE MORE METHOD GOES HERE
+    private
 }
