@@ -2,6 +2,7 @@ package com.codeup.adlister.controllers;
 
 import com.codeup.adlister.dao.DaoFactory;
 import com.codeup.adlister.models.User;
+import org.mindrot.jbcrypt.BCrypt;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -19,14 +20,16 @@ public class RegisterServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String username = request.getParameter("username");
         String email = request.getParameter("email");
-        String password = request.getParameter("password");
+        //changed it to encrypt the password before user creation
+        String unhashedPw = request.getParameter("password");
+        String password = BCrypt.hashpw(unhashedPw, BCrypt.gensalt());
         String passwordConfirmation = request.getParameter("confirm_password");
 
         // validate input
         boolean inputHasErrors = username.isEmpty()
             || email.isEmpty()
-            || password.isEmpty()
-            || (! password.equals(passwordConfirmation));
+            || unhashedPw.isEmpty()
+            || (! unhashedPw.equals(passwordConfirmation));
 
         if (inputHasErrors) {
             response.sendRedirect("/register");
