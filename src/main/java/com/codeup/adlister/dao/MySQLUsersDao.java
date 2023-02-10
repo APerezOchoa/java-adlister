@@ -46,6 +46,7 @@ public class MySQLUsersDao implements Users{
 
     @Override
     public Long insert(User user) {
+        //not quite there yet, need to put commands in string from createInsertQuery method
         try {
             PreparedStatement stmt = connection.prepareStatement(createInsertQuery(user), Statement.RETURN_GENERATED_KEYS);
             stmt.executeUpdate();
